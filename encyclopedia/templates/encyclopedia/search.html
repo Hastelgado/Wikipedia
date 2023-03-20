@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+
+    {% if content %}
+        
+        {{content|safe}}
+
+        <form action="{% url 'editpage' %}"><input type="hidden" name="title" value="{{title}}"><input class="formbtn" type="submit" value="Edit"></form>
+
+    {% else %}
+
+        <h1>Search Results</h1>
+
+        {% for result in searchlist %}
+
+            <li class="searchresults"><a href="wiki/{{result}}" >{{ result }}</a></li>
+        
+        {% endfor %}
+
+    {% endif %}
+
+
+
+{% endblock %}
